@@ -3,9 +3,12 @@ echo -e "\e[32m Install nginx \e[0m"
 # Install nginx without prompting for confirmation
 dnf install nginx -y
 
+echo exit status is - $?
+
 echo -e "\e[32m Configure nginx \e[0m"
 # Copy the expense.conf file to the nginx configuration directory
 cp /home/ec2-user/learn-expense-shell/expense.conf /etc/nginx/default.d/expense.conf
+echo exit status is - $?
 
 # Remove existing files in the nginx html directory
 rm -rf /usr/share/nginx/html/*
@@ -14,6 +17,7 @@ rm -rf /usr/share/nginx/html/*
 echo -e "\e[32m Download the frontend.zip file \e[0m"
 # Download the frontend zip file from the specified URL and save it to /tmp
 curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+echo exit status is - $?
 
 # Change to the nginx html directory
 cd /usr/share/nginx/html
@@ -22,6 +26,7 @@ cd /usr/share/nginx/html
 echo -e "\e[32m Unzip the frontend.zip file \e[0m"
 # Unzip the frontend zip file in the current directory
 unzip /tmp/frontend.zip
+echo exit status is - $?
 
 # Start the nginx service
 echo -e "\e[32m Start the nginx service \e[0m"
@@ -29,3 +34,5 @@ echo -e "\e[32m Start the nginx service \e[0m"
 systemctl enable nginx
 # Restart the nginx service
 systemctl restart nginx
+echo exit status is - $?
+
