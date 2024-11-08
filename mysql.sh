@@ -1,4 +1,8 @@
 source common.sh
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <password is missing>"
+  exit 1
+fi
 
 # Print a message to indicate the start of mysql-server installation
 Heading "Install and configure mysql-server"

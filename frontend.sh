@@ -40,6 +40,3 @@ systemctl enable nginx &>>/tmp/expense.log
 # Restart the nginx service
 systemctl restart nginx &>>/tmp/expense.log
 echo exit status is - $?
-
-
-
