@@ -1,5 +1,8 @@
 # Source the common.sh file to import necessary variables and functions
+
 source common.sh
+rm -rf /app
+
 if [ "$#" -ne 1 ]; then
   echo "Usage: $0 <password is missing>"
   exit 1
