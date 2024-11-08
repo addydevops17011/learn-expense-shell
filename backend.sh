@@ -65,7 +65,7 @@ STAT $?
 
 # Initialize the mysql database with the backend schema
 Heading "Initialize mysql database"
-mysql -h 172.31.31.183 -uroot -p"$1" < /app/schema/backend.sql
+mysql -h 172.31.39.6 -uroot -p"$1" < /app/schema/backend.sql
 STAT $?
 
 # Reload the systemd daemon
