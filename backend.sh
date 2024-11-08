@@ -1,5 +1,5 @@
-# Source the variables.sh file to import necessary variables and functions
-source variables.sh
+# Source the common.sh file to import necessary variables and functions
+source common.sh
 
 # Install and configure the backend
 Heading "Install and configure backend"

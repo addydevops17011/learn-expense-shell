@@ -1,4 +1,4 @@
-source variables.sh
+source common.sh
 
 # Print a message to indicate the start of mysql-server installation
 Heading "Install and configure mysql-server"
