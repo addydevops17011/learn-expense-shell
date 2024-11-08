@@ -8,12 +8,12 @@ Heading "Install and configure nginx"
 # Install nginx without prompting for confirmation
 dnf install nginx -y &>>/tmp/expense.log
 
-echo exit status is - $?
+STAT $?
 
 Heading "Configure nginx"
 # Copy the expense.conf file to the nginx configuration directory
 cp /home/ec2-user/learn-expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>/tmp/expense.log
-echo exit status is - $?
+STAT $?
 
 # Remove existing files in the nginx html directory
 rm -rf /usr/share/nginx/html/*
@@ -22,7 +22,7 @@ rm -rf /usr/share/nginx/html/*
 Heading "Download the frontend zip file"
 # Download the frontend zip file from the specified URL and save it to /tmp
 curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip &>>/tmp/expense.log
-echo exit status is - $?
+STAT $?
 
 # Change to the nginx html directory
 cd /usr/share/nginx/html
@@ -31,7 +31,7 @@ cd /usr/share/nginx/html
 Heading "Unzip the frontend zip file"
 # Unzip the frontend zip file in the current directory
 unzip /tmp/frontend.zip &>>/tmp/expense.log
-echo exit status is - $?
+STAT $?
 
 # Start the nginx service
 Heading "Start the nginx service"
@@ -39,4 +39,4 @@ Heading "Start the nginx service"
 systemctl enable nginx &>>/tmp/expense.log
 # Restart the nginx service
 systemctl restart nginx &>>/tmp/expense.log
-echo exit status is - $?
+STAT $?
