@@ -41,5 +41,5 @@ systemctl enable nginx &>>/tmp/expense.log
 systemctl restart nginx &>>/tmp/expense.log
 echo exit status is - $?
 
-Heading "Install and configure mysql-server"
+
 
