@@ -6,7 +6,7 @@ fi
 
 # Print a message to indicate the start of mysql-server installation
 Heading "Install and configure mysql-server"
-STAT $?
+
 
 # Install mysql-server without prompting for confirmation
 dnf install mysql-server -y &>>/tmp/mysql-install.log
@@ -22,11 +22,11 @@ STAT $?
 
 # Start the mysql-server service
 systemctl start mysqld &>>/tmp/mysql-service.log
-STAT $?
+
 
 # Print a message to indicate the start of mysql-server security configuration
 Heading " Secure mysql-server "
-STAT $?
+
 
 # Secure the mysql-server by setting the root password
 # The password is passed as a command-line argument ($1) ExpenseApp@1
