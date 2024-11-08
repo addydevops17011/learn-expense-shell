@@ -21,7 +21,12 @@ STAT $?
 
 # Create a new user named 'expense'
 Heading "Create expense user"
-useradd expense
+id expense &>>/tmp/expense.log
+if [ $? -eq 0 ]; then
+  echo "User already exists" >&2
+else
+  useradd expense
+fi
 STAT $?
 
 # Copy the backend.service file to the systemd system directory
