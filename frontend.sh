@@ -1,3 +1,4 @@
+rm -f /tmp/expense.log
 # Install and configure nginx
 echo -e "\e[32m Install nginx \e[0m"
 # Install nginx without prompting for confirmation
