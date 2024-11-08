@@ -1,63 +1,76 @@
-echo -e "\e[32m Disable nodejs module \e[0m"
+# Source the variables.sh file to import necessary variables and functions
+source variables.sh
+
+# Install and configure the backend
+Heading "Install and configure backend"
+
+# Disable the nodejs module
 dnf module disable nodejs -y
 echo "exit status is - $?"
 
-echo -e "\e[32m Enable nodejs:20 module \e[0m"
+# Enable the nodejs module with version 20
 dnf module enable nodejs:20 -y
 echo "exit status is - $?"
 
-echo -e "\e[32m Install nodejs \e[0m"
+# Install nodejs
 dnf install nodejs -y
 echo "exit status is - $?"
 
-echo -e "\e[32m Create expense user \e[0m"
+# Create a new user named 'expense'
+Heading "Create expense user"
 useradd expense
 echo "exit status is - $?"
 
-echo -e "\e[32m Copy backend.service to systemd directory \e[0m"
+# Copy the backend.service file to the systemd system directory
+Heading "Copy backend service file"
 cp backend.service /etc/systemd/system/backend.service
 echo "exit status is - $?"
 
-echo -e "\e[32m Create /app directory \e[0m"
+# Create a new directory named '/app'
+Heading "Create app directory"
 mkdir /app
 echo "exit status is - $?"
 
-echo -e "\e[32m Download backend.zip \e[0m"
+# Download the backend zip file from the specified URL
+Heading "Download backend zip file"
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
 echo "exit status is - $?"
 
-echo -e "\e[32m Change to /app directory \e[0m"
+# Change to the '/app' directory
 cd /app
 echo "exit status is - $?"
 
-echo -e "\e[32m Unzip backend.zip \e[0m"
+# Unzip the backend zip file
+Heading "Unzip backend zip file"
 unzip /tmp/backend.zip
 echo "exit status is - $?"
 
-echo -e "\e[32m Change to /app directory \e[0m"
-cd /app
-echo "exit status is - $?"
-
-echo -e "\e[32m Install npm dependencies \e[0m"
+# Install npm dependencies
+Heading "Install npm dependencies"
 npm install
 echo "exit status is - $?"
 
-echo -e "\e[32m Install mysql \e[0m"
+# Install mysql
+Heading "Install mysql"
 dnf install mysql -y
 echo "exit status is - $?"
 
-echo -e "\e[32m Initialize mysql database \e[0m"
+# Initialize the mysql database with the backend schema
+Heading "Initialize mysql database"
 mysql -h 172.31.31.183 -uroot -pExpenseApp@1 < /app/schema/backend.sql
 echo "exit status is - $?"
 
-echo -e "\e[32m Reload systemd daemon \e[0m"
+# Reload the systemd daemon
+Heading "Reload systemd daemon"
 systemctl daemon-reload
 echo "exit status is - $?"
 
-echo -e "\e[32m Enable backend service \e[0m"
+# Enable the backend service
+Heading "Enable backend service"
 systemctl enable backend
 echo "exit status is - $?"
 
-echo -e "\e[32m Restart backend service \e[0m"
+# Restart the backend service
+Heading "Restart backend service"
 systemctl restart backend
 echo "exit status is - $?"
