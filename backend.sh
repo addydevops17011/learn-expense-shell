@@ -8,15 +8,15 @@ fi
 Heading "Install and configure backend"
 
 # Disable the nodejs module
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>/tmp/expense.log
 STAT $?
 
 # Enable the nodejs module with version 20
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>/tmp/expense.log
 STAT $?
 
 # Install nodejs
-dnf install nodejs -y
+dnf install nodejs -y &>>/tmp/expense.log
 STAT $?
 
 # Create a new user named 'expense'
@@ -55,12 +55,12 @@ STAT $?
 
 # Install npm dependencies
 Heading "Install npm dependencies"
-npm install
+npm install &>>/tmp/expense.log
 STAT $?
 
 # Install mysql
 Heading "Install mysql"
-dnf install mysql -y
+dnf install mysql -y &>>/tmp/expense.log
 STAT $?
 
 # Initialize the mysql database with the backend schema
