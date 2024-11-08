@@ -1,6 +1,9 @@
 # Source the common.sh file to import necessary variables and functions
 source common.sh
-
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <password is missing>"
+  exit 1
+fi
 # Install and configure the backend
 Heading "Install and configure backend"
 
@@ -57,7 +60,7 @@ echo "exit status is - $?"
 
 # Initialize the mysql database with the backend schema
 Heading "Initialize mysql database"
-mysql -h 172.31.31.183 -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h 172.31.31.183 -uroot -p"$1" < /app/schema/backend.sql
 echo "exit status is - $?"
 
 # Reload the systemd daemon
